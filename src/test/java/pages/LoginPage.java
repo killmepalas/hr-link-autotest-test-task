@@ -1,13 +1,8 @@
 package pages;
 
-import asserts.AssertsClass;
 import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
-import managers.CustomLogger;
-import org.junit.jupiter.api.Assertions;
 import pages.pageParent.BaseProcess;
-import pages.pageParent.Page;
 import pages.pageTitle.PageTitle;
 import user.User;
 

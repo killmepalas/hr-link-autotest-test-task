@@ -3,10 +3,8 @@ package tests.legal_entities;
 import io.qameta.allure.Feature;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import tests.base_test.BaseTest;
 import user.UserFactory;
-import utils.AllureUtils;
 
 @Feature("Проверка недоступности юрлица, на которое у кадровика нет прав (positive)")
 public class UnavailabilityLegalEntityForHRWithoutRightsTest extends BaseTest {

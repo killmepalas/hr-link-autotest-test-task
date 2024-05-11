@@ -5,7 +5,7 @@ import utils.PropertyReader;
 public class UserFactory {
 
     public static User withAdminPermission(){
-        return new User(PropertyReader.getProperty("start-link.login.email.as.admin"),
+        return new User(PropertyReader.getProperty("hr-link.login.email.as.admin"),
                 PropertyReader.getProperty("hr-link.user.password"));
     }
 
