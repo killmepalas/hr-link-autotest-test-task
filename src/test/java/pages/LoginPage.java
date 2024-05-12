@@ -8,7 +8,6 @@ import user.User;
 
 import java.time.Duration;
 
-import static com.codeborne.selenide.Selenide.$x;
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
@@ -19,14 +18,7 @@ public class LoginPage extends BaseProcess {
         proxyElementForLocator("Поле 'Email/Телефон'", "//input[@formcontrolname='login']");
         proxyElementForLocator("Поле 'Пароль'", "//input[@formcontrolname='password']");
         proxyElementForLocator("Кнопка 'Войти'", "//*[@data-qa='oauth-provider-buttons-login-by-oauth-provider-link']");
-        proxyElementForLocator("Кнопка 'Отмена' окна 'Уведомления в Телеграм'", "//*[@data-qa='telegram-invitation-dlg-cancel-button']");
     }
-    private final SelenideElement openMenuActionsButton = $x("//div[@class='logo logo__clickable']");
-    private final SelenideElement errorDialogIncorrectLogin = $x("//span[contains(text(),'Указан некорректный логин.')]");
-
-    private final SelenideElement errorDialogInvalidLoginOrPassword = $x("//span[contains(text(),'Неверный логин или пароль.')]");
-
-    private final SelenideElement errorDialogDeletedAccount = $x("//span[contains(text(),'Пользователь заблокирован.')]");
 
 
     @Step("Открытие страницы авторизации")
@@ -49,14 +41,6 @@ public class LoginPage extends BaseProcess {
         authorize(user);
     }
 
-
-
-    @Step("Закрываем окно 'Уведомления в Телеграм', если оно появилось")
-    public LoginPage closeTelegramDialog() {
-        if (getElementByTitle("Кнопка 'Отмена' окна 'Уведомления в Телеграм'").isEnabled())
-            click("Кнопка 'Отмена' окна 'Уведомления в Телеграм'");
-        return this;
-    }
 
     private void authorize(User user){
         sendKeys("Поле 'Email/Телефон'", user.getEmail());

@@ -18,7 +18,12 @@ public class BaseProcess extends NavigationBar {
         proxyElementForLocator("Аватар пользователя", "//span[@class='p-avatar-text ng-star-inserted']");
         proxyElementForLocator("Профиль. Кнопка 'Выйти'", "//span[text() = 'Выйти']");
         proxyElementForLocator("Кнопка 'Войти'", "//button[@type='submit']");
+        proxyElementForLocator("Значок загрузки", "//mat-spinner");
+        proxyElementForLocator("Кнопка 'Отмена' окна 'Уведомления в Телеграм'", "//*[@data-qa='telegram-invitation-dlg-cancel-button']");
     }
+
+    public static final String TEXT_LOCATOR_PATTERN = "//*[contains(text(), '%s')]";
+    public static final String FILTER_TABLE_LOCATOR_PATTERN = "//*[@role='listbox']//*[contains(@role, 'option') and contains(., '%s')]";
 
     public void precondition() {
         authorize(UserFactory.withAdminPermission());
@@ -55,7 +60,7 @@ public class BaseProcess extends NavigationBar {
                 .loginByUserWithWrongCredentials(user);
     }
 
-    public static final String TEXT_LOCATOR_PATTERN = "//*[contains(text(), '%s')]";
+
 
     @Step("Выход пользователя из системы")
     public LoginPage exitByUserCredentials() {
@@ -68,6 +73,12 @@ public class BaseProcess extends NavigationBar {
     public BaseProcess openAvatarIcon() {
         click("Аватар пользователя");
         return this;
+    }
+
+    @Step("Закрываем окно 'Уведомления в Телеграм', если оно появилось")
+    public void closeTelegramDialog() {
+        if (getElementByTitle("Кнопка 'Отмена' окна 'Уведомления в Телеграм'").isEnabled())
+            click("Кнопка 'Отмена' окна 'Уведомления в Телеграм'");
     }
 
 }

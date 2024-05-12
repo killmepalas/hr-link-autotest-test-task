@@ -77,6 +77,16 @@ public class Storage implements IElementStorage<SelenideElement> {
     }
 
     /**
+     * @param pattern паттерн локатора элемента
+     * @param text название локатора элемента
+     * @return проверяет содержится ли локатор элемнета в хранилище
+     */
+    @Override
+    public boolean elementProxyExists(String pattern, String text) {
+        return map.containsKey($x(String.format(pattern, text)));
+    }
+
+    /**
      * @param key название локатора элемента
      * @return проверяет содержится ли локатор элемнета в хранилище
      */

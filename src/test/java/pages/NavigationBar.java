@@ -16,7 +16,7 @@ public class NavigationBar extends Page {
         proxyElementForLocator("Меню 'Заявления'", "//*[contains(@data-qa, '-app-nav-applications-registry-link')]");
         proxyElementForLocator("Меню 'Сотрудники'", "//a[contains(@data-qa, 'app-nav-employees-registry-link')]");
         proxyElementForLocator("Меню 'Справочники'", "//*[@data-qa='hr-app-nav-catalogs-link']");
-
+        proxyElementForLocator("Фильтры в 'Заявления'", "//applications-registry-table-filter-row");
     }
 
     @Step("Открытие вкладки 'Заявления'")

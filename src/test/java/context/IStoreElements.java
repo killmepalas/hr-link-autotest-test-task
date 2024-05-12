@@ -71,6 +71,16 @@ public interface IStoreElements extends IElementStorage<SelenideElement> {
     }
 
     /**
+     * @param pattern паттерн локатора элемента
+     * @param  text текст локатора элемента
+     * @return проверяет содержится ли локатор элемнета в хранилище
+     */
+    @Override
+    default boolean elementProxyExists(String pattern, String text) {
+        return getLocatorStorage().elementProxyExists(String.format(pattern, text));
+    }
+
+    /**
      * @param key название локатора элемента
      * @return проверяет содержится ли локатор элемнета в хранилище для коллекций
      */

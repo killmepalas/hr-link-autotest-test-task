@@ -14,7 +14,7 @@ public class UnavailabilityLegalEntityForHRWithoutRightsTest extends BaseTest {
     @DisplayName("Проверка отображения документов недоступного сотрудника")
     public void verifyUnavailabilityOfEmployeeDocuments(){
         baseProcess.precondition(UserFactory.withHRPermissionWithoutLegalEntityRight());
-        loginPage.closeTelegramDialog();
+        baseProcess.closeTelegramDialog();
         documentsPage.checkDocumentsRegistryDoesNotContainDocumentsOfUnavailableEmployee("Орлов Д.");
     }
 
@@ -22,16 +22,17 @@ public class UnavailabilityLegalEntityForHRWithoutRightsTest extends BaseTest {
     @DisplayName("Проверка отображения документов недоступного Юрлица")
     public void verifyUnavailabilityOfLegalEntityDocuments(){
         baseProcess.precondition(UserFactory.withHRPermissionWithoutLegalEntityRight());
-        loginPage.closeTelegramDialog();
-        documentsPage.checkDocumentsRegistryDoesNotContainDocumentsOfUnavailableLegalEntity("OОO \"КОТ\"");
+        baseProcess.closeTelegramDialog();
+        documentsPage.checkDocumentsRegistryDoesNotContainDocumentsOfUnavailableLegalEntity("ООО \"КОТ\"");
     }
 
     @Test
     @DisplayName("Проверка отображения заявлений недоступного сотрудника")
     public void verifyUnavailabilityOfEmployeeApplications(){
         baseProcess.precondition(UserFactory.withHRPermissionWithoutLegalEntityRight());
-        loginPage.closeTelegramDialog();
+        baseProcess.closeTelegramDialog();
         baseProcess.openApplicationTab();
+        applicationPage.checkApplicationRegistryDoesNotContainUnavailableApplications("Орлов Д.");
 
     }
 }
