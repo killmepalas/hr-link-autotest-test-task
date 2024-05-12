@@ -1,6 +1,7 @@
 package action;
 
 import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.ex.ElementNotFound;
 import context.IFindAndWaitElement;
 import io.qameta.allure.Step;
 import managers.CustomLogger;
@@ -254,6 +255,28 @@ public interface ActionPage extends IFindAndWaitElement {
     default boolean isElementExists(String key) {
         CustomLogger.debugFormat("Ожидаем появления элемента [%s]", key);
         return getElementByTitle(key, false) != null;
+    }
+
+    default SelenideElement waitPresenceElement(String key, int seconds) {
+        CustomLogger.debugFormat("Проверяем наличие элемента [%s]", key);
+        try {
+            getElementByTitle(key, false)
+                    .shouldBe(visible, Duration.ofSeconds(seconds));
+        } catch (ElementNotFound e) {
+            CustomLogger.debugFormat("Элемент [%s] не найден на странице", key);
+        }
+        return getElementByTitle(key, false);
+    }
+
+    default SelenideElement waitPresenceElement(String pattern, String text, int seconds) {
+        CustomLogger.debugFormat("Проверяем наличие элемента [%s]", text);
+        try {
+            $x(String.format(pattern, text))
+                    .shouldBe(visible, Duration.ofSeconds(seconds));
+        } catch (ElementNotFound e) {
+            CustomLogger.debugFormat("Элемент [%s] не найден на странице", text);
+        }
+        return $x(String.format(pattern, text));
     }
 
 
