@@ -15,11 +15,13 @@ import static com.codeborne.selenide.Selenide.$$x;
 public class ApplicationPage extends BaseProcess {
     {
         proxyCollectionElementForLocator("Таблица. Столбец 'Сотрудник'", $$x("//div[@class='applications-registry-table-body__employee-cell']"));
+        proxyElementForLocator("Страница реестра заявлений", "//*[@class='applications-registry-table-header-row__legal-entity-cell']" );
     }
 
     @Step("Проверяем, что заявления недоступного сотрудника не отображаются в реестре")
     public ApplicationPage checkApplicationRegistryDoesNotContainUnavailableApplications(String employeeName) {
 
+        waitAppearanceElement("Страница реестра заявлений",1000);
         checkColumnDoesNotContainEmployee(employeeName);
 
         while (elementProxyExists("Кнопка 'Загрузить ещё'")) {
@@ -40,7 +42,7 @@ public class ApplicationPage extends BaseProcess {
         for (var employeeNameElement :  getCollectionProxy("Таблица. Столбец 'Сотрудник'")) {
             AssertsClass.assertFalse(
                     getText(employeeNameElement).contains(employeeName),
-                    "Проверяем, что в реестре не отображаются документы сотрудника " + employeeName
+                    "Проверяем, что в реестре не отображаются заявления сотрудника " + employeeName
             );
         }
     }
