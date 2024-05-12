@@ -9,13 +9,13 @@ import user.UserFactory;
 @Feature("Проверка недоступности юрлица, на которое у кадровика нет прав (positive)")
 public class CheckUnavailabilityLegalEntityForHRWithoutRightsTest extends BaseTest {
 
-
     @Test
     @DisplayName("Проверка отображения документов недоступного сотрудника")
     public void verifyUnavailabilityOfEmployeeDocuments(){
         baseProcess.precondition(UserFactory.withHRPermissionWithoutLegalEntityRight());
         baseProcess.closeTelegramDialog();
         documentsPage.checkDocumentsRegistryDoesNotContainDocumentsOfUnavailableEmployee("Орлов Д.");
+        baseProcess.postcondition();
     }
 
     @Test
@@ -24,6 +24,7 @@ public class CheckUnavailabilityLegalEntityForHRWithoutRightsTest extends BaseTe
         baseProcess.precondition(UserFactory.withHRPermissionWithoutLegalEntityRight());
         baseProcess.closeTelegramDialog();
         documentsPage.checkDocumentsRegistryDoesNotContainDocumentsOfUnavailableLegalEntity("ООО \"КОТ\"");
+        baseProcess.postcondition();
     }
 
     @Test
@@ -33,7 +34,7 @@ public class CheckUnavailabilityLegalEntityForHRWithoutRightsTest extends BaseTe
         baseProcess.closeTelegramDialog();
         baseProcess.openApplicationTab();
         applicationPage.checkApplicationRegistryDoesNotContainUnavailableApplications("Орлов Д.");
-
+        baseProcess.postcondition();
     }
 
     @Test
@@ -43,6 +44,7 @@ public class CheckUnavailabilityLegalEntityForHRWithoutRightsTest extends BaseTe
         baseProcess.closeTelegramDialog();
         baseProcess.openEmployeeTab();
         employeesPage.checkEmployeesRegistryDoesNotContainUnavailableEmployee("Орлов Д.");
+        baseProcess.postcondition();
     }
 
     @Test
@@ -52,5 +54,6 @@ public class CheckUnavailabilityLegalEntityForHRWithoutRightsTest extends BaseTe
         baseProcess.closeTelegramDialog();
         baseProcess.openReferencesTab();
         referencesPage.checkReferencesRegistryDoesNotContainUnavailableLegalEntity("ООО \"КОТ\"");
+        baseProcess.postcondition();
     }
 }
