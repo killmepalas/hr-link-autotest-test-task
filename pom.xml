@@ -26,6 +26,7 @@
         <allure.version>2.24.0</allure.version>
 <!--        <allure.results.directory>target/allure-results</allure.results.directory>-->
 
+
     </properties>
 
     <dependencies>
@@ -159,7 +160,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.0.0-M5</version>
                 <configuration>
-                    <testFailureIgnore>true</testFailureIgnore>
+                    <testFailureIgnore>false</testFailureIgnore>
                     <argLine>
                         -Dfile.encoding=${project.build.sourceEncoding}
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
@@ -180,10 +181,10 @@
                 <version>${allure-maven.version}</version>
                 <configuration>
                     <reportVersion>${allure.version}</reportVersion>
-<!--                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>-->
-<!--                    <reportDirectory>${project.build.directory}/allure-report</reportDirectory>-->
+                    <resultsDirectory>${project.build.directory}/allure-results</resultsDirectory>
                 </configuration>
             </plugin>
+
         </plugins>
     </build>
 
