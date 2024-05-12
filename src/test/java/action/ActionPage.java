@@ -250,5 +250,11 @@ public interface ActionPage extends IFindAndWaitElement {
         }
     }
 
+    @Step("Проверяем существует ли элемент {0}")
+    default boolean isElementExists(String key) {
+        CustomLogger.debugFormat("Ожидаем появления элемента [%s]", key);
+        return getElementByTitle(key, false) != null;
+    }
+
 
 }

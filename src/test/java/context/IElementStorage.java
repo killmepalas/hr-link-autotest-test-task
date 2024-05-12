@@ -47,6 +47,13 @@ public interface IElementStorage<T> {
     boolean elementProxyExists(String key);
 
     /**
+     * @param pattern паттерн локатора элемента
+     * @param text название локатора элемента
+     * @return проверяет содержится ли локатор элемнета в хранилище
+     */
+    boolean elementProxyExists(String pattern, String text);
+
+    /**
      * @param key название локатора элемента
      * @return проверяет содержится ли локатор элемнета в хранилище для коллекций
      */

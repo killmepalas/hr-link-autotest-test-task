@@ -36,7 +36,7 @@ public interface IFindAndWaitElement extends IStoreElements, IHighLight{
 
     /**
      * @param key ключ локатора
-     * @return возвращает прокированный локатор элемента из хранилища по ключу
+     * @return возвращает проксированный локатор элемента из хранилища по ключу
      */
     default SelenideElement getCollectionElementByTitle(String key, int index, boolean javaScript) {
         return highlightElement(getCollectionProxy(key).get(index), javaScript);

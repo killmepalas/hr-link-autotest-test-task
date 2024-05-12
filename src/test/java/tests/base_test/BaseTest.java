@@ -29,12 +29,12 @@ public class BaseTest {
     public LoginPage loginPage = loadPage("Страница Авторизации. LoginPage");
     public DocumentsPage documentsPage = loadPage("Кадровик. Общая страница. 'Документы'");
 
+    public ApplicationPage applicationPage = loadPage("Общая страница. Заявления. ApplicationPage");
+
 
     static {
         Configuration.baseUrl = DOMAIN == null ? PropertyReader.getProperty("hr-link.url") : DOMAIN.equals(" ") ? PropertyReader.getProperty("hr-link.url") : DOMAIN;
-//        Configuration.browser = "chrome";
         Configuration.timeout = 30000;
-//        Configuration.browserSize = "1920x1080";
         Configuration.fileDownload = FileDownloadMode.FOLDER;
         Configuration.browser = DriverManager.init();
     }
@@ -45,26 +45,10 @@ public class BaseTest {
                 .loadPage(key);
     }
 
-
-//    public void precondition(User user){
-//        authorize(user);
-//    }
-//
-//    private void authorize(User user){
-//        loginPage.openLoginPage()
-//                .loginByUserCredentials(user);
-//    }
-
     @AfterEach
     public void close() {
-//        DatabaseManager.disconnect();
-        closeWebDriver();
-//        closeConnect();
-//        closeConnect(folder, store);
-//        DatabaseManager.disconnect();
         closeWebDriver();
         getBytesAnnotationWithArgs();
-//        stopLoggerMethodStartLogger(FilesHelper::cleanDirectoryLogs);
 
     }
 
