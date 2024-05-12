@@ -30,6 +30,8 @@ public class BaseTest {
     public DocumentsPage documentsPage = loadPage("Кадровик. Общая страница. 'Документы'");
 
     public ApplicationPage applicationPage = loadPage("Общая страница. Заявления. ApplicationPage");
+    public EmployeesPage employeesPage = loadPage("Кадровик. Общая страница 'Сотрудники'");
+    public ReferencesPage referencesPage = loadPage("Кадровик. Общая страница 'Справочники'");
 
 
     static {

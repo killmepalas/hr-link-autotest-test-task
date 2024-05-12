@@ -7,7 +7,7 @@ import tests.base_test.BaseTest;
 import user.UserFactory;
 
 @Feature("Проверка недоступности юрлица, на которое у кадровика нет прав (positive)")
-public class UnavailabilityLegalEntityForHRWithoutRightsTest extends BaseTest {
+public class CheckUnavailabilityLegalEntityForHRWithoutRightsTest extends BaseTest {
 
 
     @Test
@@ -34,5 +34,23 @@ public class UnavailabilityLegalEntityForHRWithoutRightsTest extends BaseTest {
         baseProcess.openApplicationTab();
         applicationPage.checkApplicationRegistryDoesNotContainUnavailableApplications("Орлов Д.");
 
+    }
+
+    @Test
+    @DisplayName("Проверка отображения недоступного сотрудника в реестре сотрудников")
+    public void verifyUnavailabilityOfEmployeeInEmployeeRegistry(){
+        baseProcess.precondition(UserFactory.withHRPermissionWithoutLegalEntityRight());
+        baseProcess.closeTelegramDialog();
+        baseProcess.openEmployeeTab();
+        employeesPage.checkEmployeesRegistryDoesNotContainUnavailableEmployee("Орлов Д.");
+    }
+
+    @Test
+    @DisplayName("Проверка отображения недоступного ЮЛ в реестре справочников")
+    public void verifyUnavailabilityOfLegalEntityInReferences(){
+        baseProcess.precondition(UserFactory.withHRPermissionWithoutLegalEntityRight());
+        baseProcess.closeTelegramDialog();
+        baseProcess.openReferencesTab();
+        referencesPage.checkReferencesRegistryDoesNotContainUnavailableLegalEntity("ООО \"КОТ\"");
     }
 }
